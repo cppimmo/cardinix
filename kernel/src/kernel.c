@@ -3,13 +3,14 @@
 #include <stdint.h>
 
 #include "kernel.h"
+#include "terminal.h"
 
 #if defined(__linux__)
-#error "OOGA LINUX"
+#error "a"
 #endif
 
 #if defined(__i386__)
-#error "OOGA BOOGA WONG COMPILER"
+#error "w"
 #endif
 
 enum vga_color {
@@ -45,7 +46,7 @@ size_t strlen(const char* str)
 {
 	size_t len = 0;
 	while (str[len])
-		len++
+		len++;
 	return len;
 }
 
@@ -57,7 +58,7 @@ size_t terminal_column;
 size_t terminal_color;
 uint16_t* terminal_buffer;
 
-void terminal_init(void)
+int terminal_init(void)
 {
 	terminal_row = 0;
 	terminal_column = 0;
@@ -106,7 +107,8 @@ void terminal_writestring(const char* data)
 void kernel_main(void)
 {
 	// initilize terminal
-	terminal_init();
+	if (terminal_init() == TERMINAL_INIT_FAIL)
+		return;
 	// print to terminal
 	terminal_writestring("Hello World\nWelcome to Cardinal OS");
 }
