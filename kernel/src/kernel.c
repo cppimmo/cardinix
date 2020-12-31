@@ -1,6 +1,8 @@
-#include <stdBool.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+
+#include "kernel.h"
 
 #if defined(__linux__)
 #error "OOGA LINUX"
@@ -99,11 +101,6 @@ void terminal_write(const char* data, size_t size)
 void terminal_writestring(const char* data)
 {
 	terminal_write(data, strlen(data));
-}
-
-void kernel_init(void)
-{
-	
 }
 
 void kernel_main(void)
