@@ -55,7 +55,7 @@ size_t terminal_column;
 size_t terminal_color;
 uint16_t* terminal_buffer;
 
-void terminal_initialize(void)
+void terminal_init(void)
 {
 	terminal_row = 0;
 	terminal_column = 0;
@@ -101,10 +101,15 @@ void terminal_writestring(const char* data)
 	terminal_write(data, strlen(data));
 }
 
+void kernel_init(void)
+{
+	
+}
+
 void kernel_main(void)
 {
 	// initilize terminal
-	terminal_initialize();
+	terminal_init();
 	// print to terminal
 	terminal_writestring("Hello World\nWelcome to Cardinal OS");
 }
