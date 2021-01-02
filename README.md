@@ -1,5 +1,5 @@
 # CardinalOS
-A MS-DOS like Operating System.
+A terminal basd Operating System.
 It is currently not being worked on.
 ## Building
 	...
