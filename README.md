@@ -1,6 +1,6 @@
 # CardinalOS
 A terminal basd Operating System.
-It is currently not being worked on.
+It is currently not being worked on. While I gather some needed knowledge.
 ## Building
 	...
 ## Commands
