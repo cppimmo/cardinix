@@ -1,6 +1,7 @@
 #ifndef MATH_H
 #define MATH_H
 
+extern "C" {
 // function declarations
 double acos(double x);
 double asin(double x);
@@ -109,4 +110,5 @@ double fmod(double x, double y) {
 	return 0.0;
 }
 
+}
 #endif // MATH_H
