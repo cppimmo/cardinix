@@ -1,7 +1,11 @@
 #########################
-# CARDINAL_OS GITIGNORE #
+# CARDINAL OS GITIGNORE #
 #########################
 *.dll
 *.exe
 *.obj
 *.out
+*.iso
+*.o
+*.out
+*.bin
