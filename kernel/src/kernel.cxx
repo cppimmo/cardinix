@@ -2,25 +2,41 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "purevirt.hxx"
+#include "compjunk/purevirt.hxx"
 #include "kernel.hxx"
 #include "terminal.hxx"
 
-#if defined(__linux__)
+/* #if defined(__linux__)
 #error "a"
 #endif
 
 #if defined(__i386__)
 #error "w"
-#endif
+#endif */
 
-void kernel::main(void)
+void kernel_start_message()
+{
+	using terminal::writestr, terminal::setcolor;
+	setcolor(VGA_COLOR::VGA_RED, VGA_COLOR::VGA_BLACK);
+	// https://www.oocities.org/spunk1111/birds.htm
+	writestr(",'~.-..__  _...._\n");
+    writestr(" `, '.-  ``      `'.\n");
+	writestr("   `,        _.--.,_`\\\n");
+	writestr("     \\     `'--.\\o)/`/'.\n");
+	writestr("     '._       `\".-'.__\\\n");
+	writestr("jgs    '.        ;-..-'\n");
+	writestr("           `""--.,_/\n");
+	setcolor(VGA_COLOR::VGA_WHITE, VGA_COLOR::VGA_BLACK);
+}
+
+extern "C" void kernel_main(void)
 {
 	// initilize terminal
-	if ((const auto status = terminal::init()) == terminal::TERM_STATE::INIT_FAIL)
+	if (const auto status = terminal::init() == terminal::TERM_STATE::INIT_FAIL)
 		return;
 	// print to terminal
-	terminal_writestring("Hello World\nWelcome to Cardinal OS");
+	kernel_start_message();
+	terminal::writestr("Hello World, Welcome to Cardinal OS! \n");
 	
 	return;
 }

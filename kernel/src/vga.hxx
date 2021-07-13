@@ -2,6 +2,7 @@
 #define VGA_HXX
 
 #include <stdint.h>
+#include <stddef.h>
 
 namespace vga { }
 
@@ -30,7 +31,7 @@ constexpr size_t VGA_HEIGHT = 25;
 
 inline uint8_t vga_entry_color(VGA_COLOR fg, VGA_COLOR bg)
 {
-	return fg | bg << 4;
+	return static_cast<uint8_t>(fg) | static_cast<uint8_t>(bg) << 4;
 }
 
 inline uint16_t vga_entry(unsigned char uc, uint8_t color)
