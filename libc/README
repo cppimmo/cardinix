@@ -1,0 +1,5 @@
+Headers:
+	stdbool.h
+	stdint.h
+	stddef.h
+are included with GCC.
