@@ -2,8 +2,7 @@
 CC=i686-elf-as
 
 boot:
-	$(CC) boot.s -o boot.o
+	$(CC) boot.S -o boot.o
 	
 clean:
 	rm -f boot.o
-

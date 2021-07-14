@@ -26,7 +26,9 @@ _start:
 	/*  */
 	mov $stack_top, %esp
 
-	/*  */
+	/* global constructors */
+	call _init
+	/* move into the kernel main routine */
 	call kernel_main
 
 	/* infinite system loop

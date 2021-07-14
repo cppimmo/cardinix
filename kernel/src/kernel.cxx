@@ -3,6 +3,7 @@
 #include <stdint.h>
 
 #include "compjunk/purevirt.hxx"
+#include "vga.hxx"
 #include "kernel.hxx"
 #include "terminal.hxx"
 
@@ -16,7 +17,7 @@
 
 void kernel_start_message()
 {
-	using terminal::writestr, terminal::setcolor;
+	using terminal::writestr, terminal::setcolor, vga::VGA_COLOR;
 	setcolor(VGA_COLOR::VGA_RED, VGA_COLOR::VGA_BLACK);
 	// https://www.oocities.org/spunk1111/birds.htm
 	writestr(",'~.-..__  _...._\n");
@@ -31,6 +32,7 @@ void kernel_start_message()
 
 extern "C" void kernel_main(void)
 {
+	vga::init();
 	// initilize terminal
 	if (const auto status = terminal::init() == terminal::TERM_STATE::INIT_FAIL)
 		return;
