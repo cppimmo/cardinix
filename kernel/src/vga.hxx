@@ -26,8 +26,11 @@ namespace vga
 		VGA_WHITE = 15,
 	};
 
-	size_t VGA_WIDTH; // = 80;
-	size_t VGA_HEIGHT; // = 25;
+	namespace
+	{
+		size_t VGA_WIDTH; // = 80;
+		size_t VGA_HEIGHT; // = 25;
+	}
 
 	void init();
 	uint8_t entry_color(VGA_COLOR fg, VGA_COLOR bg);

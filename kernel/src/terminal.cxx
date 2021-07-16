@@ -69,10 +69,14 @@ void terminal::putchar(char c)
 	using vga::VGA_COLOR;
 	terminal::putentryat(c, static_cast<VGA_COLOR>(terminal_color),
 		terminal_column, terminal_row);
-	terminal_column = ((terminal_column + 1) == vga::VGA_WIDTH) ?
-		0 : terminal_column + 1;
-	terminal_row = ((terminal_row + 1) == vga::VGA_HEIGHT) ?
-		0 : terminal_row + 1;
+	if (++terminal_column == vga::VGA_WIDTH)
+	{
+		terminal_column = 0;
+		if (++terminal_row == vga::VGA_HEIGHT)
+		{
+			terminal_row = 0;
+		}
+	}
 }
 
 void terminal::write(const char *data, size_t size)
@@ -86,6 +90,15 @@ void terminal::write(const char *data, size_t size)
 void terminal::writestr(const char *data)
 {
 	terminal::write(data, strlen(data));
+}
+
+void terminal::clearline(size_t lineno)
+{
+	uint16_t *line = nullptr;
+	for (size_t col = 0; col < vga::VGA_WIDTH * 2; ++col)
+	{ // set each character in column to null
+		
+	}
 }
 
 void terminal::setblinking(const bool value) noexcept

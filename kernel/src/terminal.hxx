@@ -42,6 +42,7 @@ namespace terminal
 	void writestr(const char *data);
 	void putentryat(char c, const vga::VGA_COLOR color, size_t x, size_t y);
 	void putchar(char c);
+	void clearline(size_t lineno);
 
 	[[nodiscard]] vga::VGA_COLOR term_get_fg_color() noexcept;
 	void term_set_fg_color(const vga::VGA_COLOR &color) noexcept;

@@ -5,15 +5,18 @@ BOOT_DIR=../bootldr
 LIBC=../libc
 LIBCPP=../libcpp
 LNK_SCRIPT=../linker.ld
+LIBS=-L$(LIBC) -lc -static
 FLAGS=-ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti \
-	-I$(LIBC)/include -I$(LIBCPP)/include -L$(LIBC) -l$(LIBC)/libc
+	-std=c++20 -I$(LIBC)/include -I$(LIBCPP)/include
 #SOURCES=kernel.cpp terminal.cpp
 #OBJECTS=$(SOURCES:.cpp=.o)
 BIN=cardinal.bin
 
 cardinal: kernel.o terminal.o vga.o
 	$(CC) -T $(LNK_SCRIPT) -o $(BIN) -ffreestanding -O2 -nostdlib \
-	$(BOOT_DIR)/boot.o kernel.o terminal.o vga.o -lgcc
+	-nodefaultlibs -nolibc \
+	$(BOOT_DIR)/boot.o $(BOOT_DIR)/crti.o $(BOOT_DIR)/crtn.o \
+	kernel.o terminal.o vga.o -lgcc $(LIBS)
 
 kernel.o: $(SRC_DIR)/kernel.cxx $(SRC_DIR)/kernel.hxx \
 	$(SRC_DIR)/terminal.hxx $(SRC_DIR)/vga.hxx

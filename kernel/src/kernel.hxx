@@ -4,8 +4,7 @@
 namespace kernel
 {
 
-void init();
-void main(void);
+	extern "C" void kmain(void);
 
 }
 
