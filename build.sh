@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "Building CardinalOS...\n"
+echo "Building CardinalOS..."
 
 if grub-file --is-x86-multiboot kernel/cardinal.bin; then
-	echo "multiboot enabled\n"
+	echo "multiboot enabled"
 else
-	echo "multiboot disabled\n" >&2
+	echo "multiboot disabled" >&2
 fi
 
 if [[ ! -e "release/boot/grub" ]]; then
