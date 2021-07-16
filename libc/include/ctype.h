@@ -2,7 +2,12 @@
 #define CTYPE_H
 
 // argumnent must be convertable to unsigned char
-#define DECLARE_AND_DEFINE_CTYPE_FUNCTION(name) int name(int c)
+#define DECLARE_CTYPE_FUNCTION(name) int name(int c)
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 // Use ASCII character ranges instead
 /*
@@ -43,56 +48,22 @@ static const unsigned char punct[] = { '!', '"', '#', '$', '%', '&', '\'',
  // alpha characters  lower and uppercase letters
 */
 
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isalnum) {
-	return 0;
-}
+DECLARE_CTYPE_FUNCTION(isalnum); 
+DECLARE_CTYPE_FUNCTION(isalpha);
+DECLARE_CTYPE_FUNCTION(iscntrl);
+DECLARE_CTYPE_FUNCTION(isdigit); 
+DECLARE_CTYPE_FUNCTION(isgraph);
+DECLARE_CTYPE_FUNCTION(islower);
+DECLARE_CTYPE_FUNCTION(isprint);
+DECLARE_CTYPE_FUNCTION(ispunct);
+DECLARE_CTYPE_FUNCTION(isspace);
+DECLARE_CTYPE_FUNCTION(isupper);
+DECLARE_CTYPE_FUNCTION(isxdigit);
+DECLARE_CTYPE_FUNCTION(tolower);
+DECLARE_CTYPE_FUNCTION(toupper);
 
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isalpha) {
-	return 0;
+#ifdef __cplusplus
 }
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(iscntrl) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isdigit) {
-	return (c >= 0 && c <= 9) ? 1 : 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isgraph) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(islower) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isprint) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(ispunct) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isspace) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isupper) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(isxdigit) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(tolower) {
-	return 0;
-}
-
-DECLARE_AND_DEFINE_CTYPE_FUNCTION(toupper) {
-	return 0;
-}
+#endif
 
 #endif // CTYPE_H

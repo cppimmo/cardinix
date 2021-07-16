@@ -85,16 +85,6 @@ double pow(double x, double y)
 	for (int i = 0; i < y; ++i)
 		x *= x;
 	return x;
-	/*if (y == 0) {
-		return 0;
-	} else if (y < 0) {
-		return 1/ pow(x, -y);
-	} else if (y % 2.0 == 0) {
-		const double half_pow = pow(x, y);
-		return half_pow * half_pow;
-	} else {
-		return x * pow(x, y - 1);
-	}*/
 }
 
 double sqrt(double x)
@@ -104,12 +94,12 @@ double sqrt(double x)
 
 double ceil(double x)
 {
-	return 0.0;
+	return (int)x;
 }
 
 double fabs(double x)
 {
-	return 0.0;
+	return (x < 0.0) ? -(x) : x;
 }
 
 double floor(double x)
@@ -119,7 +109,7 @@ double floor(double x)
 
 double fmod(double x, double y)
 {
-	return 0.0;
+	return (int)x % (int)y;
 }
 
 #ifdef __cplusplus
