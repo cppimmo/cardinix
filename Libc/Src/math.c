@@ -5,9 +5,18 @@ extern "C"
 {
 #endif
 
+/* The majority of the library math function implementations here use the
+ * GCC builtin functions. They are expanded inline and may only be used as
+ * function call expressions. -fno-builtin
+ */
+	
 double acos(double x)
 {
+#ifdef __GNUC__
+	return __builtin_acos(x);
+#else
 	return 0.0;
+#endif
 }
 
 double asin(double x)
