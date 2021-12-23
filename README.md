@@ -1,6 +1,6 @@
 # CardinalOS
 ![screenshot](docs/screenshot.png)<br />
-A terminal basd Intel x86 Operating System with a C++20 kernel.
+A terminal basd Intel x86 Operating System with a C kernel.
 ## Building
 You will need a GCC cross compiler for i686.
 Instructions for installing such a beast can be found here: 
