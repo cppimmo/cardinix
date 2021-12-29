@@ -1,0 +1,35 @@
+C Standard Library Implementation
+Library components:
+	assert.h
+	ctype.h
+	errno.h
+	float.h
+	limits.h
+	locale.h
+	math.h
+	setjmp.h
+	signal.h
+	stdio.h
+	stdlib.h
+	string.h
+	sys/*
+	threads.h
+	time.h
+
+Headers:
+	stdbool.h
+	stdint.h
+	stddef.h
+	stdarg.h
+are included with GCC.
+
+	Library should be usable both in the freestanding and hosted
+	environments.
+
+Building:
+	$ cd libc
+	$ make clean all
+
+Linking:
+	
+
