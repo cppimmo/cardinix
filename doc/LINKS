@@ -1,0 +1,12 @@
+This file contains some useful online resources for operating system
+development and more.
+
+C and POSIX documents:
+http://port70.net/~nsz/c/
+
+OSDevWiki Meaty Skeleton Example:
+https://wiki.osdev.org/Meaty_Skeleton
+
+Script to build GCC i386-elf target cross compiler:
+https://github.com/nativeos/i386-elf-toolchain
+

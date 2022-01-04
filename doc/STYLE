@@ -1,0 +1,112 @@
+This documents specifies standards and style specifications that all source code
+within this project should follow.
+
+C Language
+==========
+All C source files should contain the following copyright header(replace tokens
+enclosed with ** ** with the appropriate value):
+/* cardinix, file: **FILENAME** */
+/*
+ * Copyright (C) **YEAR** **FIRSTNAME** **LASTNAME**
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+All C source code should conform to the C89 and GNU89 standard.
+
+Only use multi-line style comments /* this is a comment. */
+
+Variables should be lowercase and use underscores as needed.
+
+Structures, enums, and unions should use underscores to seperates words.
+
+Function names should be lowercase and may contain underscores to separate
+words.
+
+Prefer to place function return values on their own line(this rule isn't
+required).
+
+Prefer the use of the pre-increment operator unless its use is consequential.
+
+All functions that a local to a particular source file should be marked static.
+
+All pointers should use left aligned asterick symbols.
+
+Prefer to place constants, type declarations, and functions above variable
+declarations and or definitions in source files.
+
+Declare all variables at the beginning of a block.
+
+Use the 'typedef struct' feature sparringly and only for types that the user
+should directly access its members.
+
+Indentation
+-----------
+Avoid creating blocks of code with an extreme level of depth:
+/* Example */
+if (0 == 0) {
+    if (0 == 0) {
+        if (0 == 0) {
+            if (0 == 0) {
+            }
+        }
+    }
+}
+
+The following example showcase the bracing style a mix of K&R and Stroustrup as
+well a few of the prior rules:
+Bracing
+-------
+#include <somewhat_standard_library_header.h>
+#include "nonstandard_library_header.h"
+
+#define RETURN_VALUE 0
+
+struct apple_pie {
+    struct apple_pie_filling filling;
+    struct pie_slice slices[6];
+}
+
+static void *some_function(int value);
+
+int main(int argc, char *argv[]) {
+    int exit_code = RETURN_VALUE;
+    struct apple_pie;
+    void *something = some_function(100);
+    return exit_code;
+}
+
+static void *some_function(int value) { 
+    /* some definition */
+}
+-------
+
+Assembly Language
+=================
+
+Text Documents
+==============
+All text documents should follow a similar form as listed below:
+Headers should be followed by a newline and a set of equal sign characters that
+is equal to the width of the header's number of characters.
+
+    Example
+    =======
+
+Sub headers may use hypen charaters.
+
+Limit line lengths to exactly 80 characters and no more.
+
+For paragraphs use a tab character or four spaces for indentation.
+

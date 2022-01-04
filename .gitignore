@@ -14,4 +14,5 @@ release/**
 # emacs related
 *~
 #*#
-	
+# personal documentation
+/doc/stuff	
