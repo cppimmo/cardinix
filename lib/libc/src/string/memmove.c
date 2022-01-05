@@ -19,7 +19,8 @@
 
 /* n is size */
 void *
-memmove(void *dest, const void *src, size_t n) {
+memmove(void *dest, const void *src, size_t n)
+{
 	unsigned char *local_dest = (unsigned char*)dest;
 	const unsigned char *src = (const unsigned char*)src;
 	size_t i;

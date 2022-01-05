@@ -1,4 +1,4 @@
-/* cardinix, file: memcpy.c */
+/* cardinix, file: sinh.c */
 /*
  * Copyright (C) 2022 Brian hoffpauir
  *
@@ -15,17 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <string.h>
+#include <math.h>
 
-void *
-memcpy(void *__restrict__ dest, const void *__restrict__ src, size_t n)
+double
+sinh(double x)
 {
-	unsigned char *memory_a = (unsigned char*)dest;
-	const unsigned char *src_a = (const unsigned char*)src;
-	size_t i;
-	for (size_t i = 0; i < n; ++i) {
-		memory_a[i] = src_a[i];
-	}
-	return dest;
+#if defined(__GNUC__)
+    return __builtin_sinh(x);
+#else
+    return 0.0;
+#endif
 }
 

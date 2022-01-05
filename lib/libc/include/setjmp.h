@@ -15,3 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+typedef int jmp_buf[10];
+
+int setjmp(jmp_buf env);
+void longjmp(jmp_buf env, int val);
+

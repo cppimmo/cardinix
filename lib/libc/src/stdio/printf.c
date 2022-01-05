@@ -23,7 +23,8 @@
 
 /* s is string, n is length */
 static bool
-print(const char *s, size_t n) {
+print(const char *s, size_t n)
+{
 	const unsigned char *bytes = (const unsigned char*)s;
 	size_t i;
 	for (i = 0; i < n; ++i) {
@@ -33,12 +34,75 @@ print(const char *s, size_t n) {
 }
 
 int
-printf(const char *__restrict__ format, ...) {
+printf(const char *__restrict__ format, ...)
+{
 	int bytes_written = 0;
-
 	va_list args;
-	va_start(args, format);
 
+	va_start(args, format);
+    while (*format != '\0') {
+        const size_t max_bytes = INT_MAX - bytes_written;
+        const char *format_start;
+        if (format[0] != '%' || format[1] == '%') {
+            if (format[0] == '%')
+                ++format;
+            amount = 1;
+            while (format[amount] && format[amount] != '%')
+                ++amount;
+            if (max_bytes < amount) {
+                /* set errno to EOVERFLOW here */
+                return -1;
+            }
+            if (!print(format, amount))
+                return -1;
+            format += amount;
+            bytes_written += amount;
+            continue;
+        }
+        format_start = ++format;
+
+        if (*format == 'c') {
+            char c;
+            ++format;
+            /* char promotes to int */
+            c = (char)va_arg(args, int);
+            if (!max_bytes) {
+                /* set errno to EOVERFLOW */
+                return -1;
+            }
+            if (!print(&c, sizeof(c))
+                return -1;
+            ++bytes_written;
+        }
+        else if (*format == 's') {
+            const char *s;
+            size_t len;
+
+            ++format;
+            s = va_arg(args, const char*);
+            len = strlen(s);
+            if (len > max_bytes) {
+                /* set errno to EOVERFLOW */
+                return -1;
+            }
+            if (!print(str, len))
+                return -1;
+            bytes_written += len;
+        }
+        else {
+            size_t len;
+            format = format_start;
+            len = strlen(format);
+            if (len > max_bytes) {
+                /* set errno to EOVERFLOW */
+                return -1;
+            }
+            if (!print(format, len))
+                return -1;
+            bytes_written += len;
+            format += len;
+        }
+    }
 	va_end(args);
 	return bytes_written;
 }

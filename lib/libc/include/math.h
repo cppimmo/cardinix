@@ -22,68 +22,50 @@
 extern "C" {
 #endif
 
-#define M_PI 3.14159265358979323846264338327
-
+#define M_PI 3.142
+#define HUGE_VAL
 
 double acos(double x);
 
-
 double asin(double x);
-
 
 double atan(double x);
 
-
 double atan2(double y, double x);
 
-	
 double cos(double x);
-
-
-double cosh(double x);
-
 
 double sin(double x);
 
+double tan(double x);
+
+double cosh(double x);
 
 double sinh(double x);
 
-
 double tanh(double x);
-
 
 double exp(double x);
 
+double frexp(double value, int *exp);
 
-double frexp(double x, int *exponent);
-
-
-double ldexp(double x, int exponent);
-
+double ldexp(double value, int exp);
 
 double log(double x);
 
-
 double log10(double x);
 
-
-double modf(double x, double *integer);
-
+double modf(double value, double *iptr);
 
 double pow(double x, double y);
 
-
 double sqrt(double x);
-
 
 double ceil(double x);
 
-
 double fabs(double x);
 
-
 double floor(double x);
-
 
 double fmod(double x, double y); 
 

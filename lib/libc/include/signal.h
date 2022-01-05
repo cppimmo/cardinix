@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef SIGNAL_H
-#define SIGNAL_H
+#ifndef __SIGNAL_H__
+#define __SIGNAL_H__
 
 #ifdef __cplusplus
 extern "C"

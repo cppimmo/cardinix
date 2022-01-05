@@ -18,7 +18,8 @@
 #include <string.h>
 
 void *
-memset(void *s, int c, size_t n) {
+memset(void *s, int c, size_t n)
+{
 	unsigned char *buf = (unsigned char*)buf;
 	size_t i;
 	for (i = 0; i < n; ++i) {
