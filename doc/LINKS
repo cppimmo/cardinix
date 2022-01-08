@@ -7,6 +7,36 @@ http://port70.net/~nsz/c/
 OSDevWiki Meaty Skeleton Example:
 https://wiki.osdev.org/Meaty_Skeleton
 
+soso (Simple Unix-like Operating System):
+https://github.com/ozkl/soso
+
+sortix unix-like operating system:
+https://gitlab.com/sortix/sortix/
+
 Script to build GCC i386-elf target cross compiler:
 https://github.com/nativeos/i386-elf-toolchain
+
+Intel 64 & IA-32 Developer Manual:
+https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+
+littleosbook:
+http://littleosbook.github.io/
+
+FreeBSD Read-Only Source Mirror:
+https://github.com/freebsd/freebsd-src
+
+NetBSD Read-Only Source Mirror:
+
+
+OpenBSD Read-Only Source Mirror:
+https://github.com/openbsd/src
+
+Unix Archives:
+https://www.tuhs.org/archive_sites.html
+
+Linux Kernel source tree:
+https://www.kernel.org/
+
+Manpage writing tutorial:
+https://liw.fi/manpages/
 

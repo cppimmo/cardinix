@@ -15,22 +15,40 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+# tools/build.sh
+#
 
 PROGNAME="$(basename "$0")"
-USERCHOICE=
-DEFAULTCHOICE=i386-elf
-
+# SYSDIR=./sys
+# INCLUDEDIR=./include
+# TOOLSDIR=./tools
+# RELEASEDIR=./
+#
 usage() {
-    echo "$PROGNAME: usage: $PROGNAME arch"
+    echo "$PROGNAME: usage: $PROGNAME ..."
     return    
 }
+#
+# echo "Building cardinix..."
+#
+# if grub-file --is-x86-multiboot kernel/cardinal.bin; then
+# 	echo "multiboot enabled"
+# else
+# 	echo "multiboot disabled" >&2
+# fi
+#
+# if [[ ! -e "release/boot/grub" ]]; then
+# 	mkdir -p release/boot/grub
+# fi
+# cp kernel/cardinal.bin release/boot/cardinal.bin
+# cp grub.cfg release/boot/grub.cfg
+# grub-mkrescue -o cardinal.iso release
 
-# arguments less than 1
-if [ $# -lt 1 ]; then
-    echo $DEFAULTCHOICE
-else
-    USERCHOICE="$1"
-    export HOST="$USERCHOICE"
-    echo "Current host successfully set to $USERCHOICE."
-fi
+# Stop scripts execution on any error:
+set -e
+"$TOOLSDIR"/install-headers.sh
 
+echo "Building cardinix..."
+for PROJECT in $PROJECTS; do
+    (cd $PROJECT && DESTDIR="$SYSROOT" $MAKE install)
+done

@@ -15,21 +15,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# tools/install-headers.sh - Run make install-headers on every sub-project
-#                            located in $SYSTEM_HEADER_PROJECTS
+# tools/mkiso.sh - 
 #
 
-# Stop this script completely on error:
+PROGNAME=cardinix
+RELEASEDIR="$CARDINIXDIR"/release
+
+# Stop execution if any errors occur:
 set -e
-# Run config.sh to make sure the environment variabels are set:
-$CARDINIXDIR/tools/config.sh
+"$TOOLSDIR"/build.sh
 
-# Make sure the system root directory exists:
-mkdir -p "$SYSROOT"
+mkdir -p "$CARDINIXDIR"/release
+mkdir -p "$CARDINIXDIR"/release/boot
+mkdir -p "$CARDINIXDIR"/release/boot/grub
 
-# Run make install-headers on every sub-project located in
-# $SYSTEM_HEADER_PROJECTS
-for PROJECT in $SYSTEM_HEADER_PROJECTS; do
-    (cd $PROJECT && DESTDIR="$SYSROOT" $MAKE install-headers)
-done
+cp "$CARDINIXDIR"/"$SYSROOT"/boot/"$PROGNAME".kern \
+   "$CARDINIXDIR"/release/boot/"$PROGNAME".kern
+
+cat > "$CARDINIXDIR"/release/boot/grub/grub.cfg << EOF
+menuentry "cardinix" {
+    multiboot /boot/cardinix.kern
+}
+EOF
+grub-mkrescue -o "$PROGNAME".iso release
 

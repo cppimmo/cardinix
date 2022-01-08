@@ -15,21 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# tools/install-headers.sh - Run make install-headers on every sub-project
-#                            located in $SYSTEM_HEADER_PROJECTS
-#
 
-# Stop this script completely on error:
-set -e
-# Run config.sh to make sure the environment variabels are set:
-$CARDINIXDIR/tools/config.sh
-
-# Make sure the system root directory exists:
-mkdir -p "$SYSROOT"
-
-# Run make install-headers on every sub-project located in
-# $SYSTEM_HEADER_PROJECTS
-for PROJECT in $SYSTEM_HEADER_PROJECTS; do
-    (cd $PROJECT && DESTDIR="$SYSROOT" $MAKE install-headers)
-done
+if echo "$1" | grep -Eq 'i[[:digit:]]86-'; then
+    echo i386
+else
+    echo "$1" | grep -Eo '^[[:alnum:]_]*'
+fi
 

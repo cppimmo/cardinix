@@ -1,4 +1,6 @@
 This directory contains tools(some in the form of scripts) that are not meant
 to use used as a part of the standard operating system. Instead, many are used
 to aid in the build process. You can for more information contained with in
-the scripts in the form of comments and READMEs in any subdirectory.
+the scripts in the form of comments and READMEs in any subdirectory. Some of
+these scripts will use a directory within this folder named "output" to store
+data through successive calls.

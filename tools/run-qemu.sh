@@ -15,21 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# tools/install-headers.sh - Run make install-headers on every sub-project
-#                            located in $SYSTEM_HEADER_PROJECTS
+# run-qemu.sh - Run the qemu emulator.
 #
 
-# Stop this script completely on error:
+# Stop script execution on any error:
 set -e
-# Run config.sh to make sure the environment variabels are set:
-$CARDINIXDIR/tools/config.sh
+"$TOOLSDIR"/mkiso.sh
 
-# Make sure the system root directory exists:
-mkdir -p "$SYSROOT"
-
-# Run make install-headers on every sub-project located in
-# $SYSTEM_HEADER_PROJECTS
-for PROJECT in $SYSTEM_HEADER_PROJECTS; do
-    (cd $PROJECT && DESTDIR="$SYSROOT" $MAKE install-headers)
-done
+qemu-system-$("$TOOLSDIR"/target-triplet-to-arch.sh $HOST) -cdrom cardinix.iso
 

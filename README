@@ -16,17 +16,18 @@ For more information on building visit the doc/ directory.
 Directory Structure
 ===================
 Name & Description
-bin/ - 
+bin/ - commands
 doc/ - documentation
 etc/ - default configuration files
+include/ - system include files
 lib/ - home of kernel and userspace libraries
 release/ - directory use for builds and distributions
-sbin/ - 
+sbin/ - system commands
 screenshots/ - preview screenshots
 sys/ - kernel source code
 tools/ - contains useful scripts
-usr.bin/ - 
-usr.sbin/ - 
+usr.bin/ - user commands
+usr.sbin/ - user system commands
 
 ```bash
 $ cd booldr; make; cd ..

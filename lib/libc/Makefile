@@ -1,76 +1,40 @@
-# libc Makefile last updated: 07/27/21
-CC=i686-elf-gcc
-INCLUDE_DIR=include
-KINCLUDE_DIR=../kernel/include
-CFLAGS=-O2 -g -Wall -Wextra -I$(INCLUDE_DIR) \
-	-I$(KINCLUDE_DIR) -std=gnu11 \
-	-D__IS_CARDINAL_KERNEL -ffreestanding -fbuiltin
-SRC_DIR=src
-BIN=libc.a
-SOURCES= \
-	$(SRC_DIR)/math.c \
-	$(SRC_DIR)/string.c \
-	$(SRC_DIR)/stdlib.c \
-	$(SRC_DIR)/stdio.c \
-	$(SRC_DIR)/ctype.c \
-	$(SRC_DIR)/locale.c \
-	$(SRC_DIR)/time.c
-OBJS= \
-	math.o \
-	string.o \
-	stdlib.o \
-	stdio.o \
-	ctype.o \
-	locale.o \
-	time.o \
-	signal.o
+DEFAULT_HOST!=$(TOOLSDIR)/default-host.sh
+HOST?=DEFAULT_HOST
+HOSTARCH!=$(TOOLSDIR)/target-triplet-to-arch.sh $(HOST)
 
-ARCHDIR:=arch/i386
+CFLAGS?=-O2 -g
+CPPFLAGS?=
+LDFLAGS?=
+LIBS?=
+
+DESTDIR?=
+PREFIX?=/usr/local
+EXEC_PREFIX?=$(PREFIX)
+INCLUDEDIR?=$(PREFIX)/include
+LIBDIR?=$(EXEC_PREFIX)/lib
+
+CFLAGS:=
+CPPFLAGS:=
+LIBK_CFLAGS:=
+LIBK_CPPFLAGS:=
+
+ARCHDIR=arch/$(HOSTARCH)
+
 include $(ARCHDIR)/make.config
 
-ARCHIVER=ar
+CFLAGS:=
+CPPFLAGS:=
+LIBK_CFLAGS:=
+LIBK_CPPFLAGS:=
 
-all: $(BIN)
+FREEOBJS=\
 
-#libc.a: $(OBJS)
-#	$(ARCHIVER) rcs $@ $(OBJS)
+HOSTEDOBJS=\
 
-libc.a: $(OBJS)
-	$(ARCHIVER) rcs $@ $(OBJS)
+OBJS=\
+	$(FREEOBJS) \
+	$(HOSTEDOBJS) \
 
-stdlib.o: $(SRC_DIR)/stdlib.c $(INCLUDE_DIR)/stdlib.h
-	$(CC) -c $(SRC_DIR)/stdlib.c $(CFLAGS)
+LIBK_OBJS$(FREEOBJS:.o=.libsys.o)
 
-stdio.o: $(SRC_DIR)/stdio.c $(INCLUDE_DIR)/stdio.h
-	$(CC) -c $(SRC_DIR)/stdio.c $(CFLAGS)
-
-math.o: $(SRC_DIR)/math.c $(INCLUDE_DIR)/math.h
-	$(CC) -c $(SRC_DIR)/math.c $(CFLAGS)
-
-string.o: $(SRC_DIR)/string.c $(INCLUDE_DIR)/string.h
-	$(CC) -c $(SRC_DIR)/string.c $(CFLAGS)
-
-ctype.o: $(SRC_DIR)/ctype.c $(INCLUDE_DIR)/ctype.h
-	$(CC) -c $(SRC_DIR)/ctype.c $(CFLAGS)
-
-locale.o: $(SRC_DIR)/locale.c $(INCLUDE_DIR)/locale.h
-	$(CC) -c $(SRC_DIR)/locale.c $(CFLAGS)
-
-time.o: $(SRC_DIR)/time.c $(INCLUDE_DIR)/time.h
-	$(CC) -c $(SRC_DIR)/time.c $(CFLAGS)
-
-signal.o: $(SRC_DIR)/signal.c $(INCLUDE_DIR)/signal.h
-	$(CC) -c $(SRC_DIR)/signal.c $(CFLAGS)
-
-# %.o: $(SRC_DIR)/%.c
-# 	$(CC) -c $< -o $@ $(CFLAGS)
-
-# %.o: %.S
-# 	$(CC) -c $< -o $@ $(CFLAGS)
-
-#.PHONY:
-#	all clean
-
-clean:
-	rm -f *.o $(BIN)
-
+BINARIES=libc.a libsys.a
