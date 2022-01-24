@@ -17,15 +17,16 @@
  * arch/sys/i386/io_outb.S - write a single byte to a I/O port.
  */
 
+.section .text
 /* This label should be global. */
-global outb
-
+.global outb
 /*
  * Write a singular byte to port.
  * stack + 8 - the data byte.
  * stack + 4 - the I/O port.
  * stack - the return address.
  */
+.type outb, @function
 outb:
     mov %al, 8(%esp) /* Move the data into %al */
     mov %dx, 4(%esp) /* Move the address of the port into %dx */

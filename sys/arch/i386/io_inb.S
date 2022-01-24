@@ -17,13 +17,15 @@
  * sys/arch/i386/io_inb.S - inb function implementation.
  */
 
-global inb
-
+.section .text
+/* This label shoud be global. */
+.global inb
 /*
  * inb returns a byte from the I/O port: port.
  * The top of the stack + 4 is equal to the address of the port.
  * %esp is the return address
  */
+.type inb, @function
 inb:
     mov %dx, 4(%esp) /* place the address of the port into %dx */
     in %al, %dx /* read a single byte from the port into %al */
