@@ -1,5 +1,5 @@
 This file contains some useful online resources for operating system
-development and more.
+development, links to other projects, and more.
 
 C and POSIX documents:
 http://port70.net/~nsz/c/
@@ -40,3 +40,5 @@ https://www.kernel.org/
 Manpage writing tutorial:
 https://liw.fi/manpages/
 
+opuntiaOS arm7 operating system:
+https://github.com/opuntiaOS-Project/opuntiaOS
