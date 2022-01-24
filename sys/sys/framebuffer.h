@@ -20,6 +20,7 @@
 #define _SYS_FRAMEBUFFER_H_
 
 #include <sys/io.h>
+#include <stdint.h>
 
 /* Framebuffer I/O ports */
 #define FB_COMMAND_PORT 0x3D4
@@ -30,8 +31,30 @@
 #define FB_LOW_BYTE_COMMAND  15
 
 /*
- * Move the framebuffer cursor to pos
+ * Place a single byte or string into the framebuffer respectively.
  */
-void fb_movecursor(unsigned short pos);
+void fb_putbyte(uint8_t byte);
+void fb_putstr(const char *str);
+
+/*
+ * Place a decimal uint and hexidecimal uint into the framebuffer respectively.
+ */
+void fb_putuint(uint32_t ui);
+void fb_putuint_hex(uint_32t ui_hex);
+
+/*
+ * Move the framebuffer cursor to row and col.
+ */
+void fb_movecursor(uint16_t row, uint16_t col);
+
+/*
+ * Clear framebuffer contents to current bg color.
+ */
+void fb_clear(void);
+
+/*
+ * Initialize framebuffer.
+ */
+int fb_init(void);
 
 #endif /* !_SYS_FRAMEBUFFER_H_ */
