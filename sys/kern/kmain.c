@@ -14,30 +14,54 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <sys/kernel.h>
 #include <sys/vga.h>
 #include <sys/tty.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 
-/* #if defined(__i386__)
-#error "w"
-#endif */
+/* kinit error values */
+#define KINIT_ERROR_
 
-static void kstart_message(void);
+static int kinit(uint32_t mbaddr, uint32_t magic_num);
+static void show_welcome(void);
 
-void
-kmain(void)
+int
+kmain(uint32_t mbaddr, uint32_t magic_num)
 {
+    int res;
+    multiboot_info_t *mbinfo = remap_multiboot_info(mbaddr);
+
 	tty_init();
-	// set_kernel_terminal_func(Write);
-	kstart_message();
+    fb_clear();
+
+    if (magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
+        tty_setcolor(COLOR_RED);
+        kprintf("Invalid magic number: 0x%x\n", (unsigned int)magic_num);
+        return K_DEADDEAD;
+    }
+
+    res = kinit(mbaddr, magic_num);
+    if (res != 0) {
+        /* switch (res) {
+        } */
+    }
+
+	show_welcome();
 	kprintf("Hello World, Welcome to cardinix!\n");
-	return;
+	return K_DEADBEEF;
+}
+
+static int
+kinit(uint32_t mbaddr, uint32_t magic_num)
+{
+
+    return 0;
 }
 
 static void
-kstart_message(void)
+show_welcome(void)
 {
     tty_setcolor(vga_entry_color(VGA_COLOR_RED, VGA_COLOR_BLACK);
 	/* https://www.oocities.org/spunk1111/birds.htm */
