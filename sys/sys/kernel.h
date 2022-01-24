@@ -25,6 +25,9 @@
 /* Kernel global variables & constants. */
 #define MAXHOSTNAMELEN 64
 
+#define K_DEADDEAD 0xDEADDEAD
+#define K_DEADBEEF 0xDEADBEEF
+
 /* Host and domain names */
 extern long hostid;
 extern char hostname[MAXHOSTNAMELEN];
