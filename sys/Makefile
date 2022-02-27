@@ -63,7 +63,7 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 .c.o:
 	$(CC) -MD -c $< -o $@ -std=gnu89 $(CFLAGS) $(CPPFLAGS)
 
-.S.o:
+.s.o:
 	$(CC) -MD -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
 clean:
